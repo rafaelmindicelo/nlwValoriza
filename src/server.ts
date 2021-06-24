@@ -1,14 +1,12 @@
+import "reflect-metadata";
 import express from "express";
+import { router } from "./routes";
+import "./database"; //procura o arquivo index
+
 const app = express();
 
-//para acessar as propriedades do express, é necessário executar o comando yarn add @types/express -D
+app.use(express.json());
 
-app.get("/test", (req, res) => {
-  return res.send("Olá NLW");
-});
-
-app.post("/test-post", (req, res) => {
-  return res.send("Olá NLW - método POST");
-});
+app.use(router); //funciona como middleware
 
 app.listen(3000, () => console.log("Server is running"));
