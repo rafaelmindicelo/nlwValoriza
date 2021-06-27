@@ -14,14 +14,14 @@ class AuthenticateUserService {
     const user = await usersRepositories.findOne({email});
 
     if (!user) {
-      throw new Error("Email incorrect");
+      throw new Error("Email/Password incorrect");
     }
 
     //compare -> compara a senha digitada com a senha (hash) salva no banco
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Password incorrect");
+      throw new Error("Email/Password incorrect");
     }
 
     const token = sign(
